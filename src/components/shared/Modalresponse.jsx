@@ -1,9 +1,11 @@
 // Componente de Modal
 import React from 'react';
+import { useSelector } from 'react-redux';
 // import './Modal.css'; // Archivo CSS para personalizar el estilo del modal
 
 export const Modalresponse = ({ isVisible, onClose }) => {
     if (!isVisible) return null;
+    const result = useSelector(state => state.folders.result);
 
     const onDownload = () => {
       console.log('====================================');
@@ -11,6 +13,7 @@ export const Modalresponse = ({ isVisible, onClose }) => {
       console.log('====================================');
       onClose();
     }
+    console.log(result);
 
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50" onClick={onClose}>
@@ -28,16 +31,22 @@ export const Modalresponse = ({ isVisible, onClose }) => {
             </button>
           </div>
           <div className="mt-4">
-            <p className="text-gray-500 dark:text-gray-400">
+            {/* <p className="text-gray-500 dark:text-gray-400">
               Oprime el siguiente boton para descargar los resultados de la validacion
-            </p>
+            </p> */}
+
+            {
+              result.map((result,index)=>(
+                <p key={index} className='text-gray-500'>imagen {index+1} es: {result.class}</p>
+              ))
+            }
           </div>
           <div className="flex justify-end mt-6 space-x-4">
             <button
               className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded"
               onClick={onDownload}
             >
-              Descargar
+              Aceptar
             </button>
           </div>
         </div>

@@ -30,7 +30,6 @@ export const FolderValidator = () => {
   }, [selectedFolder,selectedTypeDocument])
 
   const HandleSendImages = () => {
-    
     if (selectedTypeDocument !== '' && selectedFolder !== null) {
       dispatch(getFolderResponse(selectedFolder,selectedTypeDocument))
     }

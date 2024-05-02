@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GrValidate } from "react-icons/gr";
 import { DropDownDocuments } from './DropDownDocuments';
 import { Modalresponse } from '../shared/Modalresponse';
 import { useDispatch, useSelector } from 'react-redux';
 import { hideModal, showModal } from '../../store/modalSlice';
+import { setResult } from '../../store/foldersSlice';
 
 export const ButtonValidate = ({HandleSendImages , showDropDown= false,selectedTypeDocument,handleDoocumentTypeChange,isButtonEnabled = true}) => {
+  const result = useSelector(state => state.folders.result);
+
+  
+  
 
   // const [isModalVisible, setIsModalVisible] = useState(false);
   const dispatch = useDispatch()
   const isModalVisible= useSelector( state => state.modal.show)
+
 
   const openModal = () => {
     // setIsModalVisible(true);
@@ -17,8 +23,16 @@ export const ButtonValidate = ({HandleSendImages , showDropDown= false,selectedT
 
   };
 
+  useEffect(() => {
+    if (result !== '') {
+      openModal()
+    }
+
+  }, [result])
+
   const closeModal = () => {
     // setIsModalVisible(false);
+    dispatch(setResult(''))
     dispatch(hideModal())
   };
 

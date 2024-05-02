@@ -37,6 +37,7 @@
 // }
 
 import { principalApi } from "../../api/PrincipalApi";
+import { setResult } from "../foldersSlice";
 import { showModal } from "../modalSlice";
 
 // Helper function to create the body from an image object
@@ -57,7 +58,8 @@ export const getDocumentsResponse = (images, typeOfDocument) => {
             try {
                 const res = await principalApi.post('upload-image/', body);
                 if (res.status >= 200 && res.status < 300) {
-                    console.log("Request successful:", res.data);
+                    // console.log("Request successful:", res.data);
+                    dispatch(setResult([res.data]))
                     // dispatch other actions as needed
                 }
             } catch (error) {
@@ -72,14 +74,13 @@ export const getDocumentsResponse = (images, typeOfDocument) => {
             // Use Promise.all to upload multiple images in parallel
             try {
                 
-                principalApi.post('upload-images/', bodies)
+                const res =  await principalApi.post('upload-images/', bodies)
                 
 
-                responses.forEach((res, index) => {
+               
                     if (res.status >= 200 && res.status < 300) {
-                        console.log(`Image ${index} upload successful:`, res.data);
+                        dispatch(setResult(res.data.results))
                     }
-                });
             } catch (error) {
                 console.error("Error while uploading multiple images:", error);
                 // handle error as needed
@@ -87,8 +88,8 @@ export const getDocumentsResponse = (images, typeOfDocument) => {
         }
 
         // After uploading, trigger the modal with a delay
-        setTimeout(() => {
-            dispatch(showModal());
-        }, 2000);
+        // setTimeout(() => {
+        //     dispatch(showModal());
+        // }, 2000);
     };
 };
