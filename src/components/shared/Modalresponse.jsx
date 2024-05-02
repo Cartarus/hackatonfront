@@ -37,7 +37,7 @@ export const Modalresponse = ({ isVisible, onClose }) => {
 
             {
               result.map((result,index)=>(
-                <p key={index} className='text-gray-500'>imagen {index+1} es: {result.class}</p>
+                <p key={index} className='text-gray-500'>imagen {index+1} es: {result.class} </p>
               ))
             }
           </div>

@@ -45,7 +45,7 @@ export const LoginContainer = () => {
   return (
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
       <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-white dark:text-white">
-        <img className="w-16 h-16 mr-2" src="src\assets\Logo docusense.png" alt="logo"/>
+        <img className="w-16 h-16 mr-2" src="assets\Logo docusense.png" alt="logo"/>
         Docusense IA
       </a>
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">

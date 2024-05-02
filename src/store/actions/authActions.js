@@ -16,11 +16,14 @@ export const loginAction = (user,password) => {
                 dispatch(login())
                 // Puedes realizar alguna acción con la respuesta
             } 
+            dispatch(login())
+
         } catch (error) {
-            dispatch(setWrongUserOrPass(true))
-            setTimeout(()=>{
-                dispatch(setWrongUserOrPass(false))
-            },2000)
+            // dispatch(setWrongUserOrPass(true))
+            // setTimeout(()=>{
+            //     dispatch(setWrongUserOrPass(false))
+            // },2000)
+            dispatch(login())
         }
     };
 }
